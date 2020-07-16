@@ -24,6 +24,6 @@ When the User refreshes the page the added tasks are loaded from local storage.
 
 Take a look at the deployed application here: https://ubern00bie.github.io/DayPlanner/
 
-![Day Planner Demo](./Screenshot.png)
+![Day Planner Demo](./assets/Screenshot.PNG)
 
 
