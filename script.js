@@ -5,10 +5,11 @@ var currentTimeDiv = $('<p id="currentTime">' + "Current Time: " + currentTime +
 var timeCheck = moment().format('H'); //comment out for testing
 // var timeCheck = 12; //sets hour used for testing
 
+//displays current date and time at top of day planner
 $('#currentDay').append(currentDay);  
 $(".jumbotron").append(currentTimeDiv);
 
-//sets array equal to array stored in LocalStorage or creates a pre-filled array if one does not exist.
+//sets array equal to LocalStorage array OR creates a pre-filled array if one does not exist.
 var workDay = (JSON.parse(localStorage.getItem("workDay")) || [
   {
   time:"8:00 AM",
@@ -58,7 +59,7 @@ $(workDay).each(function(index){ //loop to create time-blocks
       $(timeBlock).addClass('time-block row');
   var hourBox = document.createElement('div')
       $(hourBox).addClass('hour');
-
+  //sets time box to left of textarea
       hourBox.innerText = workDay[index].time;
 
   //set task for each text area
@@ -66,27 +67,28 @@ $(workDay).each(function(index){ //loop to create time-blocks
       $(textArea).addClass('description');
       textArea.innerText = workDay[index].task;
 
-  //add a save button with an event listener
+  // create save button
   var save = document.createElement('button'); 
-      save.innerText = "save";
+      save.innerHTML = "Save Task";
       save.setAttribute('class','saveBtn');
       save.setAttribute('id',index);
 
-      //appending elements
-      timeBlock.append(hourBox)
-      timeBlock.append(textArea);
-      timeBlock.append(save);
-      $('.container').append(timeBlock);
+  //appending created elements
+  $(timeBlock).append(hourBox)
+  $(timeBlock).append(textArea);
+  $(timeBlock).append(save);
+  $('.container').append(timeBlock);
 
-      //adjusting classes for past, present, future CSS dependant on time
-      if(this.timeValue < timeCheck) {
-        $(timeBlock).addClass("past");
-      } else if (this.timeValue > timeCheck) {
-        $(timeBlock).addClass("future");
-      } else {
-        $(timeBlock).addClass("present");
-      }
-})//adds event listener to button which grabs value from textarea to store in workDay array, and then local storage
+  //adjusting classes for past, present, future CSS styling based on time
+  if(this.timeValue < timeCheck) {
+    $(timeBlock).addClass("past");
+  } else if (this.timeValue > timeCheck) {
+    $(timeBlock).addClass("future");
+  } else {
+    $(timeBlock).addClass("present");
+  }
+
+})//add event listener to button, which grabs value from textarea to store in workDay array, and then local storage
   $("button").click(function() {
     value = $(this).siblings("textArea").val();
     workDay[this.id].task = value;
