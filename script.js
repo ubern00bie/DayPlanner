@@ -2,14 +2,14 @@ var currentDay = $('#currentDay').html();
 currentDay = moment().format(' M/D/YYYY');
 var currentTime = moment().format('H:HH A')
 var currentTimeDiv = $('<p id="currentTime">' + "Current Time: " + currentTime + '</p>;');
-var timeCheck = moment().format('H'); //comment out for testing
-// var timeCheck = 12; //sets hour used for testing
+var timeCheck = moment().format('H'); // comment out for testing
+var timeCheck = 12; //sets hour used for testing
 
-//displays current date and time at top of day planner
+// displays current date and time at top of day planner
 $('#currentDay').append(currentDay);  
 $(".jumbotron").append(currentTimeDiv);
 
-//sets array equal to LocalStorage array OR creates a pre-filled array if one does not exist.
+// sets array equal to LocalStorage array OR creates a pre-filled array if one does not exist.
 var workDay = (JSON.parse(localStorage.getItem("workDay")) || [
   {
   time:"8:00 AM",
@@ -52,34 +52,34 @@ var workDay = (JSON.parse(localStorage.getItem("workDay")) || [
   timeValue:15
   },]);
 
-$(workDay).each(function(index){ //loop to create time-blocks
+$(workDay).each(function(index){ // loop to create time-blocks
 
-  //set time for each timeblock
+  // set time for each timeblock
   var timeBlock = document.createElement('div');
       $(timeBlock).addClass('time-block row');
   var hourBox = document.createElement('div')
-      $(hourBox).addClass('hour');
-  //sets time box to left of textarea
+      $(hourBox).addClass('col-md-1 hour');
+  // sets time box to left of textarea
       hourBox.innerText = workDay[index].time;
 
-  //set task for each text area
+  // set task for each text area
   var textArea = document.createElement('textarea');
-      $(textArea).addClass('description');
+      $(textArea).addClass('col-md-10 description');
       textArea.innerText = workDay[index].task;
 
   // create save button
   var save = document.createElement('button'); 
-      save.innerHTML = "Save Task";
-      save.setAttribute('class','saveBtn');
+      save.innerHTML = "<img id='saveBtnImg' src='assets/save.png'></img>"
+      save.setAttribute('class','col-md-1 saveBtn');
       save.setAttribute('id',index);
 
-  //appending created elements
+  // appending created elements
   $(timeBlock).append(hourBox)
   $(timeBlock).append(textArea);
   $(timeBlock).append(save);
   $('.container').append(timeBlock);
 
-  //adjusting classes for past, present, future CSS styling based on time
+  // adjusting classes for past, present, future CSS styling based on time
   if(this.timeValue < timeCheck) {
     $(timeBlock).addClass("past");
   } else if (this.timeValue > timeCheck) {
@@ -88,7 +88,7 @@ $(workDay).each(function(index){ //loop to create time-blocks
     $(timeBlock).addClass("present");
   }
 
-})//add event listener to button, which grabs value from textarea to store in workDay array, and then local storage
+})// add event listener to button, which grabs value from textarea to store in workDay array, and then local storage
   $("button").click(function() {
     value = $(this).siblings("textArea").val();
     workDay[this.id].task = value;
