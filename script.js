@@ -3,7 +3,7 @@ currentDay = moment().format(' M/D/YYYY');
 var currentTime = moment().format('H:HH A')
 var currentTimeDiv = $('<p id="currentTime">' + "Current Time: " + currentTime + '</p>;');
 var timeCheck = moment().format('H'); // comment out for testing
-var timeCheck = 12; //sets hour used for testing
+// var timeCheck = 12; //sets hour used for testing
 
 // displays current date and time at top of day planner
 $('#currentDay').append(currentDay);  
