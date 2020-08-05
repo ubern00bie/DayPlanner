@@ -1,7 +1,7 @@
 # DayPlanner
 Day Planner
 
-Technologies used: HTML, CSS, JavaScript,jQuery
+Technologies used: HTML, CSS, JavaScript, jQuery
 
 For this assignment I was tasked with creating a day plannner that met the following requirements:
 
@@ -25,6 +25,8 @@ The User can enter their daily tasks into the associated time block and click "s
 When the User refreshes the page the added tasks are loaded from local storage.
 
 Take a look at the deployed application here: https://ubern00bie.github.io/DayPlanner/
+
+Contact info: jbenningfield.dev@gmail.com
 
 ![Day Planner Demo](./assets/Screenshot.PNG)
 ## License
